@@ -1,0 +1,22 @@
+# Systems
+.git
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Build
+bin/
+build/
+node_modules/
+
+# Gradle
+.gradle
+!gradle/wrapper/gradle-wrapper.jar

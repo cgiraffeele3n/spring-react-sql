@@ -1,0 +1,34 @@
+version: "3.4"
+services:
+  sql:
+    build:
+      context: ./db/
+      dockerfile: Dockerfile
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=mydb
+    tty: true
+
+  backend:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    command: java -jar RESTAPI-1.0.0-SNAPSHOT.jar
+    depends_on:
+      - sql
+    tty: true
+
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - backend
+    tty: true
